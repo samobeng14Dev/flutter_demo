@@ -6,13 +6,13 @@ void main() {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => MyApp(),
+      builder: (context) => Home(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.red[600],
         ),
         body: Center(
-          child: Text("Hello Flutter",style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            color: Colors.grey[600],
-            fontFamily:'IndieFlower',
-          ),),
+          child: Image(image:NetworkImage('https://images.unsplash.com/photo-1541873676-a18131494184?q=80&w=1618&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'))
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
