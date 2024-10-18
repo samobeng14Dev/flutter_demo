@@ -4,7 +4,8 @@ import 'quotes.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: QuoteList()));
+    home: QuoteList(),
+  ));
 }
 
 class QuoteList extends StatefulWidget {
@@ -15,12 +16,42 @@ class QuoteList extends StatefulWidget {
 }
 
 class _QuoteListState extends State<QuoteList> {
-   List<Quote> quotes = [
+  List<Quote> quotes = [
     Quote(text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde"),
     Quote(text: "In the middle of difficulty lies opportunity.", author: "Albert Einstein"),
     Quote(text: "The only way to do great work is to love what you do.", author: "Steve Jobs"),
   ];
 
+  Widget quoteTemplate(Quote quote) { // Specify the type
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch, 
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(
+              height: 6.0,
+            ),
+            Text(
+              '- ${quote.author}', // Display the author
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey[800],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +64,7 @@ class _QuoteListState extends State<QuoteList> {
       ),
       body: ListView(
         children: quotes.map((quote) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              '${quote.text} - ${quote.author}',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          );
+          return quoteTemplate(quote); // Use the quoteTemplate method
         }).toList(),
       ),
     );
