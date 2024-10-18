@@ -11,8 +11,15 @@ void main() {
   );
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int ninjaLevel=0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class Home extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.grey[900],
         appBar: AppBar(
-          title: Text('S NINJA ID', style: TextStyle(color: Colors.white)),
+          title: Text('Ninja ID', style: TextStyle(color: Colors.white)),
           centerTitle: true,
           backgroundColor: Colors.grey[850],
           elevation: 0.0,
@@ -28,7 +35,18 @@ class Home extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.fromLTRB(40.0, 40.0, 30.0, 0.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start, // Ensure all content is aligned left
             children: <Widget>[
+              Center(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('ninja.png'),
+                  radius: 40.0,
+                ),
+              ),
+              Divider(
+                height: 90.0,
+                color:Colors.grey[800]
+              ),
               Text(
                 'NAME',
                 style: TextStyle(color: Colors.grey, letterSpacing: 1.0),
@@ -53,17 +71,26 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 10.0,
               ),
-              Text(
-                '8',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 1.0,
-                    fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start, // Align '8' to the left
+                children: [
+                  Text(
+                    '$ninjaLevel',
+                    style: TextStyle(
+                        color: Colors.amberAccent[200],
+                        letterSpacing: 1.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 30.0,
-              )
-            
+              ),
+              Row( children: <Widget>[
+                Icon(Icons.email, color: Colors.grey[400],),
+                SizedBox(width: 10.0,),
+                Text('kwameafriyie@gmail.com', style: TextStyle(color: Colors.grey[400]),)
+              ],)
             ],
           ),
         ),
@@ -71,3 +98,5 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+
