@@ -22,7 +22,34 @@ class _QuoteListState extends State<QuoteList> {
     Quote(text: "The only way to do great work is to love what you do.", author: "Steve Jobs"),
   ];
 
-  Widget quoteTemplate(Quote quote) { // Specify the type
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text('Awesome Quotes'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+      ),
+      body: ListView(
+        children: quotes.map((quote) {
+          return QuoteCard(quote: quote); // Use the quoteTemplate method
+        }).toList(),
+      ),
+    );
+  }
+}
+
+class QuoteCard extends StatelessWidget {
+  const QuoteCard({
+    super.key,
+    required this.quote,
+  });
+
+  final Quote quote;
+
+  @override
+  Widget build(BuildContext context) { // Specify the type
     return Card(
       margin: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Padding(
@@ -49,23 +76,6 @@ class _QuoteListState extends State<QuoteList> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text('Awesome Quotes'),
-        centerTitle: true,
-        backgroundColor: Colors.redAccent,
-      ),
-      body: ListView(
-        children: quotes.map((quote) {
-          return quoteTemplate(quote); // Use the quoteTemplate method
-        }).toList(),
       ),
     );
   }
