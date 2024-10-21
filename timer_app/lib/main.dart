@@ -5,7 +5,7 @@ import 'package:timer_app/pages/loading.dart';
 import "pages/home.dart";
 void main()=>runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  initialRoute: '/home',
+  initialRoute: '/',
   routes:{
     '/':(context)=>Loading(),
     '/home':(context)=>Home(),
