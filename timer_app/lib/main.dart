@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:timer_app/pages/choose_locatiion.dart';
+import 'package:timer_app/pages/home.dart';
+import 'package:timer_app/pages/loading.dart';
+import "pages/home.dart";
+void main()=>runApp(MaterialApp(
+  debugShowCheckedModeBanner: false,
+  initialRoute: '/home',
+  routes:{
+    '/':(context)=>Loading(),
+    '/home':(context)=>Home(),
+    "/location":(context)=>ChooseLocatiion()
+  }
+));
+
