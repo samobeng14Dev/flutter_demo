@@ -46,6 +46,19 @@ class _HomeState extends State<Home> {
                     ),
                 ],
               ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (data.isNotEmpty)
+                    Text(
+                      ' ${data['time'] ?? 'Unknown'}',
+                      style: TextStyle(fontSize: 60.0, letterSpacing: 2.0),
+                    )
+                ],
+              )
             ],
           ),
         ),

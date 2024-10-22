@@ -18,7 +18,8 @@ class _LoadingState extends State<Loading> {
     Navigator.pushReplacementNamed(context, '/home',arguments: {
       'location':instance.location,
       'flag':instance.flag,
-      'url':instance.time,
+      'time':instance.time,
+      
     });
     // setState(() {
     //   time = instance.time; // Store the time retrieved
