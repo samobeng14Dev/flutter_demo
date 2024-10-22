@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:timer_app/services/world_time.dart';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -10,30 +9,36 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getData() async {
-    // Simulate a network request
-    final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
+  String time = '';
+  String errorMessage = '';
 
-    if (response.statusCode == 200) {
-      // Process the response
-      print('Response data: ${response.body}');
-    } else {
-      // Handle the error
-      print('Request failed with status: ${response.statusCode}.');
-    }
+  void setupWorldTime() async {
+    WorldTime instance = WorldTime(location: "London", flag: 'england.png', url: 'London');
+    await instance.getTime();
+    Navigator.pushReplacementNamed(context, '/home',arguments: {
+      'location':instance.location,
+      'flag':instance.flag,
+      'url':instance.time,
+    });
+    // setState(() {
+    //   time = instance.time; // Store the time retrieved
+    //   errorMessage = instance.errorMessage; // Get the error message
+    // });
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    setupWorldTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Loading Screen'),
+        child: Text('Loading...'
+          // errorMessage.isNotEmpty ? errorMessage : (time.isNotEmpty ? 'Current time: $time' : 'Loading...'),
+        ),
       ),
     );
   }
